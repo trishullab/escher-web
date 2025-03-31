@@ -1,12 +1,13 @@
-# www-lasr
+# www-escher
 
-This is the repository that contains source code for the [website for LaSR](https://github.com/trishullab/lasr.jl).
+This is the repository that contains source code for the [website for escher](https://github.com/trishullab/escher) hosted on [https://trishullab.github.io/www-escher/](https://trishullab.github.io/www-escher/).
+
 
 This is the general workflow I follow to convert a slide deck into a scrollytelling website:
 
-1. Open `static/lasr-slides.pptx` and edit the slide deck.
-2. Export the slide deck as a PDF file `static/lasr-slides.pdf`.
-3. `brew install pdf2svg` and then run `static/extract-slides.sh` which defines the logic to extract each slide into folders with relevant frames (`static/scientific-discovery-frames/`, `static/pysr-frames/`, `static/lasr-frames/`)
+2. Export slide decks as PDF files `static/escher-slides.pdf`.
+3. `brew install pdf2svg` and then run `static/extract-slides.sh` which defines the logic to extract each slide into folders with relevant frames.
+
 4. Open `index.html` and edit the content to match the slide deck. Here is how the directory of frames integrates into a scrollytelling section:
   ```html
 <section class="section">
