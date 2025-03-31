@@ -114,12 +114,14 @@
 	<section class="hero teaser">
 		<div class="container is-max-desktop">
 			<div class="hero-body">
-				<img src="./static/images/teaser.svg" style="max-width: 100%; height: auto;" loading="eager" <h2 class="subtitle has-text-centered">
+				<img src="./static/images/teaser.svg" style="max-width: 100%; height: auto;" loading="eager">
+				<div class="subtitle has-text-centered is-size-6">
 				Prior work in concept-bottleneck visual recognition aims to leverage
 				discriminative visual concepts to enable more accurate object classification.
-				<span class="escher">Escher</span> is an approach for iteratively evolving a visual concept library using feedback from a VLM
+				<span class="escher">Escher</span> is an approach for iteratively evolving a visual concept library
+				using feedback from a VLM
 				critic to discover descriptive visual concepts.
-				</h2>
+				</div>
 
 			</div>
 		</div>
@@ -134,21 +136,30 @@
 					<h2 class="title is-3">Abstract</h2>
 					<div class="content has-text-justified">
 						<p>
-							We study the problem of building a visual concept library for visual recognition. Building effective visual concept
-							libraries is challenging, as manual definition is labor-intensive, while relying solely on LLMs for concept generation
-							can result in concepts that lack discriminative power or fail to account for the complex interactions between them.
+							We study the problem of building a visual concept library for visual recognition. Building
+							effective visual concept
+							libraries is challenging, as manual definition is labor-intensive, while relying solely on
+							LLMs for concept generation
+							can result in concepts that lack discriminative power or fail to account for the complex
+							interactions between them.
 						</p>
 						<p>
-							Our approach, <span class="escher">Escher</span>, takes a library learning perspective to iteratively discover and improve visual concepts.
-							Escher uses a vision-language model (VLM) as a critic to iteratively refine the concept library, including accounting for
-							interactions between concepts and how they affect downstream classifiers. By leveraging the in-context learning
-							abilities of LLMs and the history of performance using various concepts, <span class="escher">Escher</span> dynamically improves its concept
-							generation strategy based on the VLM critic's feedback. 
+							Our approach, <span class="escher">Escher</span>, takes a library learning perspective to
+							iteratively discover and improve visual concepts.
+							Escher uses a vision-language model (VLM) as a critic to iteratively refine the concept
+							library, including accounting for
+							interactions between concepts and how they affect downstream classifiers. By leveraging the
+							in-context learning
+							abilities of LLMs and the history of performance using various concepts, <span
+								class="escher">Escher</span> dynamically improves its concept
+							generation strategy based on the VLM critic's feedback.
 						</p>
 						<p>
 							Notably, <span class="escher">Escher</span> does not require any human annotations, and is
-							thus an automated plug-and-play framework. We empirically demonstrate the ability of <span class="escher">Escher</span> to learn a concept library
-							for zero-shot, few-shot, and fine-tuning visual classification tasks. This work represents, to our knowledge, the first
+							thus an automated plug-and-play framework. We empirically demonstrate the ability of <span
+								class="escher">Escher</span> to learn a concept library
+							for zero-shot, few-shot, and fine-tuning visual classification tasks. This work represents,
+							to our knowledge, the first
 							application of concept library learning to real-world visual tasks.
 						</p>
 					</div>
@@ -166,13 +177,27 @@
 					<h3 class="title is-size-6-mobile is-size-4-tablet">Discovering visual concepts</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
 						<p>
-							In many scientific fields, perceptual reasoning doesn't come naturally. Sometimes the features of an image aren't obvious to the human eye. Other times the questions we pose demand more than instinct, requiring deliberate analysis. As a result, scientists must learn how to identify subtle traits by building domain knowledge and seeking constant feedback from peers. Let's look at a concrete example from ecology.
+							In many scientific fields, perceptual reasoning doesn't come naturally. Sometimes the
+							features of an image aren't obvious to the human eye. Other times the questions we pose
+							demand more than instinct, requiring deliberate analysis. As a result, scientists must learn
+							how to identify subtle traits by building domain knowledge and seeking constant feedback
+							from peers. Let's look at a concrete example from ecology.
 						</p>
 						<p>
-							In this iNaturalist exchange [<a href="https://www.inaturalist.org/observations/1970016">Source</a>], an experienced ecologist uploads a geo-tagged photo of a lizard, initially misidentifying it as a Florida Scrub Lizard (<em>Sceloporus woodi</em>). Another user, a trained herpetologist, corrects the identification, suggesting that the lizard is actually a Northern Curly-tailed Lizard (<em>Leiocephalus carinatus</em>). They catch a distinguishing morphological detail: Sceloporus (the family of the Florida Scrub Lizard) do not have a strongly <a href="https://en.wikipedia.org/wiki/Keeled_scales">keeled</a> tail. The experienced ecologist agrees with the correction and explains that they were focusing on the lizard's color patterning, rather than the scales.
+							In this iNaturalist exchange [<a
+								href="https://www.inaturalist.org/observations/1970016">Source</a>], an experienced
+							ecologist uploads a geo-tagged photo of a lizard, initially misidentifying it as a Florida
+							Scrub Lizard (<em>Sceloporus woodi</em>). Another user, a trained herpetologist, corrects
+							the identification, suggesting that the lizard is actually a Northern Curly-tailed Lizard
+							(<em>Leiocephalus carinatus</em>). They catch a distinguishing morphological detail:
+							Sceloporus (the family of the Florida Scrub Lizard) do not have a strongly <a
+								href="https://en.wikipedia.org/wiki/Keeled_scales">keeled</a> tail. The experienced
+							ecologist agrees with the correction and explains that they were focusing on the lizard's
+							color patterning, rather than the scales.
 						</p>
 						<p>
-							We are interesed in the question: <strong>how can machine perception systems learn to identify such subtle visual concepts?</strong>
+							We are interested in the question: <strong>how can machine perception systems learn to
+								identify such subtle visual concepts?</strong>
 						</p>
 					</div>
 				</div>
@@ -192,8 +217,14 @@
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left">
 						<p>
 							Visual programming attempts to decompose complex perceptual reasoning problems into
-							a logical combination of simpler perceptual tasks that can be solved using off-the-shelf vision
-							foundation models. <a href="https://github.com/allenai/visprog">Such</a> <a href="https://viper.cs.columbia.edu/">exciting</a> <a href="https://glab-caltech.github.io/vadar/">works</a> leverage the code generation capabilities of large language models (LLMs) along with a pre-specified API of visual foundation models to generate code that can be executed to answer perceptual reasoning questions.
+							a logical combination of simpler perceptual tasks that can be solved using off-the-shelf
+							vision
+							foundation models. <a href="https://github.com/allenai/visprog">Such</a> <a
+								href="https://viper.cs.columbia.edu/">exciting</a> <a
+								href="https://glab-caltech.github.io/vadar/">works</a> leverage the code generation
+							capabilities of large language models (LLMs) along with a pre-specified API of visual
+							foundation models to generate code that can be executed to answer perceptual reasoning
+							questions.
 						</p>
 					</div>
 				</div>
@@ -209,28 +240,26 @@
 		<div class="container">
 			<h2 class="title is-2">Visual Programming's decoupling bottleneck</h2>
 			<!-- Method. -->
-			<div class="columns is-centered" id="pysr">
+			<div class="columns is-centered" id="cbd">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Constructing visual programs for scientific images</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Constructing visual programs for scientific
+						images</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							However, such approaches inherently suffer from <em>the decoupling of the program synthesizer and the underlying vision foundation models</em>. 
-							The program synthesizer is trained to generate deterministic code, and the stochastic nature of the vision foundation model is hidden away by the API. This decoupling leads to a disconnect between how the program synthesizer assumes the vision foundation model will behave and how it actually behaves on 
+							However, such approaches inherently suffer from <em>the decoupling of the program
+								synthesizer and the underlying vision foundation models</em>.
+							The program synthesizer is trained to generate deterministic code, and the stochastic nature
+							of the vision foundation model is hidden away by the API. This decoupling leads to a
+							disconnect between how the program synthesizer assumes the vision foundation model will
+							behave and how it actually behaves on
 							real-world images.
 						</p>
 					</div>
 					<h3 class="title is-size-6-mobile is-size-4-tablet">Our Hypothesis</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							<strong>Our main goal is to understand how we can better- 
-								if we can overcome this decoubling by using the vision foundation model as a critic to guide the program synthesizer.</strong>
-						<p>
-							Our hypothesis is that the islands emerge because PySR (or any symbolic algorithm) can only
-							sample programs that are <strong>syntactically close</strong> to the best program in each
-							population.
-							But syntactic closeness does not necessarily imply semantic closeness. Can we instead sample
-							programs that are <strong>semantically close</strong> to the best programs in each
-							population?
+							Our main goal is to understand whether we can overcome this decoupling by using the vision foundation model as a critic to
+								guide the program synthesizer.
 						</p>
 					</div>
 				</div>
@@ -245,7 +274,8 @@
 
 	<section class="section">
 		<div class="container">
-			<h2 class="title is-2"><span class="escher">Escher</span>: Self-Evolving Visual Concept Library using Vision-Language Critics</h2>
+			<h2 class="title is-2"><span class="escher">Escher</span>: Self-Evolving Visual Concept Library using
+				Vision-Language Critics</h2>
 			<!-- Method. -->
 			<div class="columns is-centered" id="escher-iterations-loop">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
@@ -257,148 +287,164 @@
 							is to classify the image into one of the classes.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Concept Library Desiderata: (2) Symbolic
-						Guidance</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Prior work: (1) Visual concept-bottleneck models
+					</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							<strong>Symbolic Guidance</strong>: A concept can also guide the search for new programs.
-							This arises naturally
-							from the abstraction property: if a concept is a good abstraction of a set of equations, we
-							should be able to
-							use it to sample new equations that are similar to the ones in the set.
+							Prior work in this area begins by asking an LLM to decompose the complex categorization task
+							into a series of simpler perceptual tasks.
 						</p>
 						<p>
-							This is particularly useful in scientific discovery, where scientists often have a
-							preconception of how certain
-							variables will interact with each other, but may not know the exact form of the
-							relationship<em>
-								(The example with gravitational waves is a little misleading as the theoretical
-								prediction prompted the
-								experimental discovery).
-							</em>
+							For example, here, the LLM would be asked two questions (1) What does a <em>donut</em> look
+							like?
+							(2) What does a <em>bagel</em> look like?
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's Three phases</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Prior work: (2) Visual concept-bottleneck models
+					</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							LaSR consists of three phases: <em>Hypothesis Evolution</em>, <em>Concept Abstraction</em>,
-							and <em>Concept Evolution</em>. In
-							<em>Hypothesis Evolution</em>, we search for programs that best fit the data and are guided
-							by concepts discovered in the previous iteration.
-							<em>Concept Abstraction</em> deals with updating the concept library with new concepts
-							derived from the best
-							performing programs. Finally, <em>Concept Evolution</em> involves updating the concept
-							library with new concepts that are implications of the discovered concepts.
+							Then, a CLIP-based VLM is used to estimate how well the image matches the visual concepts.
+							The final categorization is decided
+							by choosing the class whose average visual concept score is highest. Such approaches have
+							been shown to work well in practice compared
+							to naively using the class-image similarity.
 						</p>
 						<p>
-							This is a self-amplifying loop: better programs lead to better concepts, which can, in turn,
-							guide the search for even better programs.
+							There are other benefits too: (1) The visual concepts are interpretable, (2) The visual
+							concepts can be reused across different tasks, (3) The visual concepts can be used to
+							decompose otherwise out-of-distribution categorization tasks into in-distribution
+							classification tasks.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 1 Hypothesis Evolution</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Prior work: (3) Visual concept-bottleneck models
+						- Limitations</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							The hypothesis evolution searches for programs that best fit the data and are guided by
-							concepts discovered in the previous iteration. To do this, we will <em>extend</em> PySR's
-							search process to incorporate concept guidance.
-							The next few slides will detail how we do this.
+							However, on this input, the LLM generated visual concepts, while faithful to the
+							categorization task, yield very different results
+							when evaluated by the VLM.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Phase 1: Base Algorithm</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Prior work: (4) Visual concept-bottleneck models
+						- Limitations</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							We build upon PySR's multi-population genetic programming framework to integrate concept
-							guidance.
-							Let's begin by understanding PySR's main loop first. Assuming \(k\) programs in a single
-							population, PySR starts with
-							a randomly initialized set of programs \( \left( \{Pi_1^1, \dots \Pi_1^k \} \right) \),
-							from which the best program is selected \( \left( \pi_1^\star \right) \)
-							by evaluating its fitness on a supervised dataset. This program undergoes either mutation (a
-							part of the program is resampled),
-							crossover (a part of the program is swapped with a part of the second best program),
-							simplification (the program is simplified), or
-							optimization (the constants in the program are optimized). The generated program replaces
-							the oldest program in the population, and the process
-							repeats for a fixed number of iterations. Each iteration takes less than a second, and many
-							such populations can be run in parallel.
+							We hypothesize that such approach suffers from the same weakness that zero-shot visual
+							programming approaches suffer from: the LLMs decomposition is decoupled from the VLM's
+							performance.
+							The VLM and the LLM had very different training methodologies and hence, have different
+							inductive biases.
+							These biases can lead to the LLM generating visual concepts that, while faithful to the
+							categorization task, prove to be detrimental to the VLM's performance.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Phase 1: LLM Operations </h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Concept Library: Introduction</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Integrating concept guidance into PySR involves augmenting all symbolic operations that
-							generate new programs with
-							an LLM zero shot query that mimics the symbolic operation it is replacing
+							<span class="escher">Escher</span> attempts to overcome this limitation by instantiating a
+							concept library that is iteratively refined using the VLM's feedback.
 						</p>
 						<p>
-							Instead of fully replacing the symbolic operations, we propose a hybrid approach where we
-							replace the symbolic operation with the LLM
-							zero shot query with probability \(p\) (usually 1%). This allows us to incorporate the
-							concept guidance into the search process without
-							sacrificing the 'local search' nature of PySR.
+							This concept library is a data structure that stores the visual concepts generated by the
+							LLM for each class.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">Phase 1: Concept Library Integration</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Concept Library: Instantiation</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Each LLM zero shot query is conditioned on concepts discovered in the previous iteration.
-							These concepts are stored in a concept library
-							and ensure that the LLM zero shot query is relevant to the current search space.
+							Following previous work, we generate concepts using an LLM conditioned on the class names
+							with a slight modification:
+							the LLM is also given access to the concept library. Initially, the concept library is empty
+							so this is equivalent to
+							how prior work uses the LLM.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 2 Concept Abstraction</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Concept Library: VLM Forward Pass</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Next, the best performing programs are abstracted into concepts. We rely on another LLM zero
-							shot query
-							to "summarize" the programs into a natural language representation. This concept is then
-							stored in the concept library.
+							To evaluate the generated concepts, <span class="escher">Escher</span> simply passes the
+							concepts to the underlying VLM.
+							However, instead of directly using the VLM outputs to predict the class, we use the VLM
+							outputs to better understand
+							what classes get confused with each other, and how the concept library can be improved to
+							reduce this confusion.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Phase 3 Concept Evolution</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Feedback Generation: (1) Disambiguation
+						Heuristic</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Finally, the concept library is updated with new concepts that are implications of the
-							discovered concepts. This is done by
-							another LLM zero shot query that is conditioned on the discovered concepts.
+							To generate feedback, <span class="escher">Escher</span> attempts to find classes that are
+							confused with each other.
+							If we have access to the ground truth labels, this can be achieved by constructing a
+							confusion matrix of the VLM outputs.
+						</p>
+						<p>
+							However, <span class="escher">Escher</span> does not have access to the ground truth labels.
+							Instead, <span class="escher">Escher</span> analyzes the raw similarity scores for each
+							image-class pair to make this decision. Generally, this necessitates a well-calibrated
+							backbone VLM model, and there are many heuristics to achieve this.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (1)</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Feedback Generation: (2) Disambiguation
+						Heuristic</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Let's take a step back and understand the intuition behind LaSR. We noted that
-							PySR's ends up with "islands" in the search space because it can only sample programs
-							that are syntactically close to the best programs in each population. As LaSR builds upon
-							PySR,
-							we will also end up with these "islands" in the search space at the end of Phase 1.
+							Here, we showcase one such heuristic: <em>top-k pseudo-confusion</em>. This heuristic
+							selects the
+							top-k classes with the highest image-text similarity scores for each image, and identifies
+							the classes
+							that are consistently ranked within the top-k most-similar classes across all images. The
+							intuition is that if the VLM
+							consistently ranks two classes within the top-k most-similar classes for a given image, it
+							is likely that the VLM
+							is confused between these two classes.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (2)</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Feedback Generation: (3) Example</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							In Phase 2, LaSR abstracts the best performing programs into concepts. These concepts serve
-							as "bridges" between the "islands" in the search space.
+							For example, in this image, the pseudo-confusion matrix can be used to identify two classes
+							of birds in a fine-grained bird
+							classification dataset that are confused with each other: a <em>Slaty backed Gull</em> and a
+							<em>California Gull</em>.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (3)</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Feedback Generation: (4) Disambiguation
+						Resolution</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							We can now sample new programs conditioned on the discovered concepts. This allows us to
-							explore
-							new parts of the search space that were previously inaccessible. Since we retain the "local
-							search"
-							capabilities of PySR, intuitively, this allows us to explore more "islands" in the search
-							space.
+							Once <span class="escher">Escher</span> identifies the classes that are confused with each
+							other, it attempts to resolve this confusion by generating new concepts for the confused
+							classes. If classes are confused more than once, the resolution query reflects the history
+							of past disambiguations, as well as the VLM's feedback score after each disambiguation.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Intuition (4)</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Concept Library: Feedback loop</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							Furthermore, in Phase 3, we can sample more concepts that are derived from the discovered
-							concepts.
-							these concepts, in turn, increase the exploration of the search space in areas that were
-							previously
-							inaccessible.
+							This loop is repeated for a fixed number of iterations, and usually yields a concept library
+							that is much more
+							interpretable and useful than the initial concept library.
+						</p>
+						<p>
+							In our running example, this enables the discovery of visual concepts that help distinguish between the donut and the bagel.
+						</p>
+					</div>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Feedback Generation: (5) Underlying Insight</h3>
+					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
+						<p>
+							<span class="escher">Escher</span>'s key insight is in leveraging the concept library to
+							couple the LLM's generation and the VLM's responses.
+							A VLM with a specialized concept library produces more fine-grained class disambiguation
+							feedback, prompting the LLM to uncover even finer concepts, which leads to an even more
+							specialized library for the next iteration. Like other <a
+								href="https://arxiv.org/abs/2006.08381">library</a> <a
+								href="https://arxiv.org/abs/2106.11053">learning</a> <a
+								href="https://arxiv.org/abs/2310.19791">algorithms</a>, ideally -- while the LLM
+							disambiguates concepts well and the VLM remains sensitive to them -- this self-reinforcing
+							loop continues until no further relevant concepts can be identified.
 					</div>
 				</div>
 				<!-- Image. -->
@@ -411,141 +457,111 @@
 
 	<section class="section">
 		<div class="container">
-			<h2 class="title is-2">LaSR: Results</h2>
+			<h2 class="title is-2"><span class="escher">Escher</span> Results</h2>
 			<!-- Method. -->
-			<div class="columns is-centered" id="lasr-results">
+			<div class="columns is-centered" id="escher-results">
 				<div class="column is-max-mobile is-max-tablet is-max-desktop is-max-widescreen article">
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Fine-grained evolution w/ CBMs</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							LaSR doesn't require human provided concepts. Hence, we can test LaSR against other
-							symbolic regression algorithms on the Feynman equations; a collection of equations that
-							describe empirical relationships from the <a
-								href="https://www.feynmanlectures.caltech.edu/">Feynman Lectures Series</a> .
-							We found that LaSR outperforms other symbolic regression algorithms on this benchmark.
+							Generally, algorithms that use intermediate concepts for decomposing perceptual tasks are
+							known as concept-bottleneck models (CBMs). Our running baseline so far -- using an LLM to
+							generate a set of textual concepts -- can also be expressed as a CBM.
 						</p>
 						<p>
-							LaSR's performance is ultimately bottlenecked by the quality of the language guidance. To
-							evaluate this,
-							we conducted a set of cascading experiments where we varied the quality of the language
-							guidance by (1) increasing
-							the probability of replacing symbolic operations with LLM zero shot queries and (2) changing
-							the backend LLM model.
-							We found that even a small model like <a href="https://github.com/meta-llama/llama3">Llama 3
-								8B</a> can provide
-							sufficient guidance for LaSR to outperform other symbolic regression algorithms.
-						</p>
-						<p>
-							More details on this set of experiments (and a set of experiments on an unseen synthetic
-							dataset) can be found in our paper.
+							<span class="escher">Escher</span> is a meta-algorithm that is agnostic to the underlying
+							choice of CBM. Furthermore, it doesn't
+							require any human provided concepts. We evaluated how <span class="escher">Escher</span>
+							behaves in two scenarios (more studies in the paper!):
+						<ol>
+							<li><em>Does evolving CBMs with <span class="escher">Escher</span> improve the performance
+									of the CBM?</em>: We compared the performance of a CBM in its first iteration with
+								the performance of the CBM after iterating with <span class="escher">Escher</span>. We
+								found that <span class="escher">Escher</span> improves the performance of the CBM in all
+								cases. The delta improvement depended on many factors that are discussed in greater
+								details in further experiments.</li>
+							<li><em>Does <span class="escher">Escher</span> outperform the LLM's zero-shot generated
+									concepts?</em>: Inherently, <span class="escher">Escher</span> has an unfair
+								advantage over the LLM's zero-shot generated concepts as it samples more concepts in
+								each iteration. In this experiment, we queried the LLM for a set of concepts that was
+								the same size as the number of concepts in <span class="escher">Escher</span>'s final
+								concept library. We found that <span class="escher">Escher</span> outperformed the LLM's
+								zero-shot generated concepts in all cases.</li>
+						</ol>
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations with Hints</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Qualitative Results (1)</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							We also conducted an enhancement study where we provided LaSR with hints for the equations
-							in the Feynman equations dataset. We found that LaSR with hints accelerated the search
-							process and found the correct equation faster than LaSR without hints, even discovering
-							some new equations.
+							We start with an image of a <em>Male Ring-necked pheasant</em>. This is a category from the
+							North American birds dataset, which contains over 400 species of birds.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations Qualitative Study</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Qualitative Results (2)</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							We also conducted a qualitative study on the equations discovered by LaSR. Here, we should
-							Equation #10 from the Feynman
-							equations dataset: Coulomb's law. LaSR and PySR both discover a high performing program for
-							this equation. Coulomb's law
-							is interesting because it embodies multiple concepts: (1) The force and the distance of the
-							charges are inversely proportional and follow a
-							"power law" trend, (2) In the scalar form, the force is proportional to the product of the
-							charges and since multiplication is commutative,
-							the order of the charges does not matter.
-						</p>
-						<p>
-							<strong>PySR's equation:</strong> PySR's equation is unwieldy and simplifies to the correct
-							form after about 10 manual steps of simplification. Also,
-							as this equation requires more constants, it is more prone to optimization errors.
+							With no iterations, the underlying VLM mispredicts this image as a <em>Female Ring-necked
+								pheasant</em>. Since this is a context-bottlenecked model, we can inspect the underlying
+							concepts to better understand the model's prediction.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations Qualitative Study</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Qualitative Results (3)</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							<strong>LaSR's equation:</strong> LaSR's equation is much simpler and reduces to ground
-							truth after four manual steps of simplification. Surprisingly,
-							we notice that smaller models tend to produce simpler equations.
+							When examining the concept activations for the <em>Male Ring-necked pheasant</em>, we notice
+							a substantially lower overall score—likely because the LLM generates concepts for each class
+							in isolation. As a result, highly similar concepts may end up with slightly different
+							initializations, which can alter prediction outcomes. Moreover, these LLM-generated concepts
+							may lack the necessary discriminative power to distinguish between closely related classes
+							because they are unaware of which other classes are present in the dataset.
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR: Feynman Equations Qualitative Study</h3>
+					<h3 class="title is-size-6-mobile is-size-4-tablet">Qualitative Results (4)</h3>
 					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
 						<p>
-							LaSR produces two artifacts: an equation of best fit and a concept library. Here, we
-							showcase snippets of the concept library generated for
-							Coulomb's law. As a consequence of LLM training, the concepts are rather verbose and small
-							relevant concepts are often buried in the middle of the
-							generations.
+							After five iterations with <span class="escher">Escher</span>, the VLM correctly predicts
+							the true class of the image. This is because we are able to identify that the underlying VLM
+							is getting confused between a <em>Male</em> and a <em>Female ring-necked pheasant</em>, and
+							generate concepts that resolve this confusion. Specifically, if we inspect the new most
+							activated concepts, we find that
+							the LLM identifies that a Male ring-necked pheasant has a <em>metallic green head and
+								neck</em>, which proves to be a very discriminative concept for the VLM.
 						</p>
 						<p>
-							<strong>Limitations:</strong> As a consequence of using LLM zero shot queries, LaSR cannot
-							guarantee the factuality or the correctness of the concepts in the concept library.
-							Furthermore, concepts deemed to be "important" may be a consequence of the LLM model's
-							training data and may mislead scientists.
-							Addressing these concerns is an exciting direction for future work in LLM guided program
-							induction.
-						</p>
-					</div>
+							<strong>Limitations</strong>: <span class="escher">Escher</span> currently has three main
+							constraints:
 
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LLM Scaling Laws: Present methodology</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							To investigate LaSR's utility in finding novel and practical empirical trends,
-							we investigate whether LaSR can discover novel LLM scaling laws on the BigBench dataset.
-						</p>
-						<p>
-							Traditionally, to identify an LLM scaling law, practitioners must first manually posit a
-							"skeleton
-							equation" with a fixed set of known variables and unknown free parameters, and then optimize
-							the unknown parameters based on a dataset of model hyperparameters and resulting dataset
-							fitness.
-						</p>
-					</div>
-
-
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LLM Scaling Laws: Methodology with LaSR</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							Instead of starting with a predefined equation, we use LaSR to discover the skeleton
-							equation that best fits various subsets of the BigBench dataset.
-						</p>
-						<p>
-							Removing the need to manually posit a skeleton equation simplifies the methodology for
-							finding scaling laws in many ways. (1) It removes human preconceptions about the expected
-							relationships between hyperparameters. (2) It increases the number of variables and the type
-							of variables human practitioners can jointly reason about. (3) It enables positing equations
-							of much higher complexity and variable interdependence than otherwise possible.
+						<ol>
+							<li>
+								<strong>Factual Accuracy</strong>: Because we rely on zero-shot queries from large
+								language models,
+								<span class="escher">Escher</span> cannot guarantee the accuracy or correctness of the
+								concepts
+								in its library. Moreover, concepts flagged as important may reflect biases from the
+								VLM's underlying
+								training process and risk misleading researchers.
+							</li>
+							<li>
+								<strong>Generality</strong>: The pseudo-confusion matrix approach is limited in fidelity
+								and
+								not well-suited for general-purpose use. Generating feedback for broader visual
+								reasoning
+								tasks remains a challenge.
+							</li>
+							<li>
+								<strong>VLM Robustness</strong>: CLIP-based visual language models (VLMs) are imperfect,
+								as identified in
+								<a href="https://arxiv.org/abs/2503.08723">recent studies</a>. Since <span
+									class="escher">Escher</span> is largely model-agnostic, it would be worthwhile to
+								explore how more advanced VLMs might improve its performance.
+							</li>
+						</ol>
 						</p>
 					</div>
-					<h3 class="title is-size-6-mobile is-size-4-tablet">LaSR's LLM Scaling Law</h3>
-					<div class="content is-size-7-mobile is-size-6-tablet has-text-left step">
-						<p>
-							LaSR discovers the following scaling law on the subset of BigBench:
-							$$\texttt{score} = \frac{A}{\left( \frac{\texttt{train_steps}}{B}\right)^\texttt{#shots}} +
-							E$$
-							More details are in the paper but, in essence, this scaling law suggests that increasing the
-							number of shots exponentially increases the model's performance for instances with less
-							training data, while having diminishing gains as the number of training steps of the model
-							increase.
-						</p>
-						<p>
-							As the output artifacts of LaSR are interpretable, we can even augment existing scaling laws
-							with the discovered empirical! More details/limitations are in the paper!
-						</p>
-					</div>
-
 				</div>
 				<!-- Image. -->
 				<div class="column content">
-					<img src="static/results-frames/1.svg" id="updateableFigure" loading="eager">
+					<img src="static/escher-qualitative-results-frames/1.svg" id="updateableFigure" loading="eager">
 				</div>
 			</div>
 		</div>
@@ -564,14 +580,14 @@
 							premise of our work:
 						</p>
 						<ul>
-							<li><a href="https://www.nature.com/articles/s41586-023-06924-6">FunSearch: Making new
-									discoveries in mathematical sciences using Large Language Models</a> </li>
-							<li><a href="https://arxiv.org/abs/2305.01582">Interpretable Machine Learning for Science
-									with PySR and SymbolicRegression.jl</a> </li>
-							<li><a href="https://arxiv.org/abs/2310.19791">LILO: Learning Interpretable Libraries by
-									Compressing and Documenting Code</a> </li>
-							<li><a href="https://arxiv.org/abs/1911.12247 ">LLM-SR: Scientific Equation Discovery via
-									Programming with Large Language Models</a> </li>
+							<li><a href="https://arxiv.org/abs/2210.07183">Visual Classification via Description from
+									Large Language Models</a> </li>
+							<li><a href="https://arxiv.org/abs/2211.11158">Language in a Bottle: Language Model Guided
+									Concept Bottlenecks for Interpretable Image Classification</a> </li>
+							<li><a href="https://arxiv.org/abs/2308.03685">Learning Concise and Descriptive Attributes
+									for Visual Recognition</a> </li>
+							<li><a href="https://arxiv.org/abs/2503.08723 ">Is CLIP ideal? No. Can we fix it? Yes!</a>
+							</li>
 							<li><a href="https://arxiv.org/abs/2210.05050 ">Neurosymbolic Programming for Science</a>
 							</li>
 						</ul>
@@ -592,13 +608,13 @@
 					paper</a> for mathematical details and
 				experimental results. You can cite our paper as follows:
 			</p>
-			<pre><code>@misc{grayeli2024symbolicregressionlearnedconcept,
-	title={Symbolic Regression with a Learned Concept Library}, 
-	author={Atharva Sehgal and Patrick Yuan and Ziniu Hu and Yisong Yue and Jennifer Sun and Swarat Chaudhuri},
-	year={2025},
+			<pre><code>@misc{sehgal2025escher,
+	author = {Atharva Sehgal and Patrick Yuan and Ziniu Hu and Yisong Yue and Jennifer Sun and Swarat Chaudhuri},
+	title = {Escher: Self-Evolving Visual Concept Library using Vision-Language Critics},
+	year = {2025},
 	eprint={????.?????},
 	archivePrefix={arXiv},
-	primaryClass={cs.LG},
+	primaryClass={cs.CV},
 	url={https://arxiv.org/abs/????.?????}, 
 }</code></pre>
 		</div>
@@ -610,9 +626,7 @@
 				<a class="icon-link" href="https://arxiv.org/abs/????.?????">
 					<i class="fas fa-file-pdf"></i>
 				</a>
-				<a class="icon-link"
-					href="https://github.com/trishullab/escher"
-					class="external-link" disabled>
+				<a class="icon-link" href="https://github.com/trishullab/escher" class="external-link" disabled>
 					<i class="fab fa-github"></i>
 				</a>
 			</div>
@@ -640,16 +654,16 @@
 		</div>
 	</footer>
 
-	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="./static/css/d3.min.js"></script>
 	<script src="./static/scrollama.js"></script>
 	<script src="./static/js/scrollytelling.js"></script>
 	<script>
 		// Init scrollable sections.
 		mobileCorrections();
 		// init("#scientific-discovery");
-		init("#pysr");
+		init("#cbd");
 		init("#escher-iterations-loop");
-		init("#lasr-results");
+		init("#escher-results");
 	</script>
 </body>
 
